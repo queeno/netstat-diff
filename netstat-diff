@@ -57,14 +57,14 @@ main() {
   "${diff}" "${diff_options}" "${current}" "${old}"
 }
 
-while getopts ":c:" flag ; do
-  if [ -n $flag ]; then
+while getopts "c" flag ; do
+  if [ $flag == "c" ]; then
     while true; do
       main
       sleep 5
-      test $? -gt 128 && break
+      test $? -gt 128 && exit
     done
-  else
-    main
   fi
 done
+
+main
